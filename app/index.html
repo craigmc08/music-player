@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Audio Player</title>
+
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="title-bar">
+      <div class="title">Audio Visualizer</div>
+      <div class="title-bar-buttons">
+        <button class="min-button">-</button>
+        <button class="max-button">+</button>
+        <button class="close-button">x</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="analyser-container" style="--analyser-bars: 4; --bar-gap: 32px; --bar-width: 128px; --analyser-height: 0.5;"></div>
+      <div class="info-container">
+        <!-- Change the src attribute to some path to a song -->
+        <audio src="mp3/fireaway.mp3" id="audiosrc" autoplay controls></audio>
+        <br>
+        No info to display (yet)
+      </div>
+    </div>
+  </div>
+
+  <script src="js/controls.js"></script>
+  <script src="js/analyser-controller.js"></script>
+  <script src="js/fft-analyser.js"></script>
+
+  <script>
+  AnalyserController.init();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'F5') {
+      window.location.reload();
+    }
+  });
+  </script>
+</body>
