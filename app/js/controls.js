@@ -1,22 +1,46 @@
-const $ = (s)=>document.querySelector(s);
+const loopElement = $('.control-button--loop');
+const shuffleElement = $('.control-button--shuffle');
+const playElement = $('.control-button--play');
 
-(function(){
-  const remote = require('electron').remote;
-  function init() {
-    $('.min-button').addEventListener('click', e=>{
-      remote.getCurrentWindow().minimize();
-    });
-    $('.max-button').addEventListener('click', e=>{
-      const win = remote.getCurrentWindow();
-      if (win.isMaximized()) win.unmaximize();
-      else win.maximize();
-    });
-    $('.close-button').addEventListener('click', e=>{
-      remote.getCurrentWindow().close();
-    });
-  }
+const registerToggleControl = (e, updateFunc) => {
+  e.addEventListener('click', () => {
+    const dataState = e.getAttribute('data-state');
+    if (dataState === 'active') e.setAttribute('data-state', '');
+    else e.setAttribute('data-state', 'active');
+    updateFunc(dataState !== 'active');
+  });
+};
+const registerPlayElement = (e, updateFunc) => {
+  e.addEventListener('click', () => {
+    const state = e.innerText;
+    if (state === 'play_arrow') e.innerText = 'pause';
+    else e.innerText = 'play_arrow';
+    updateFunc(state === 'play_arrow');
+  });
+}
 
-  document.onreadystatechange = () => {
-    if (document.readyState === 'complete') init();
-  };
-})();
+const registerAudioSource = (audiosrc) => {
+  audiosrc.addEventListener('play', () => {
+    playElement.innerText = 'pause';
+  });
+  audiosrc.addEventListener('pause', () => {
+    playElement.innerText = 'play_arrow';
+  });
+};
+
+const updateLooping = active => {
+  // Do something with this later
+};
+const updateShuffling = active => {
+  // Do something with this later
+};
+const updatePlaying = active => {
+  if (active) $('#audiosrc').play();
+  else $('#audiosrc').pause();
+};
+
+registerToggleControl(loopElement, updateLooping);
+registerToggleControl(shuffleElement, updateShuffling);
+registerPlayElement(playElement, updatePlaying);
+
+registerAudioSource($('#audiosrc'));

@@ -43,21 +43,24 @@ body {
   grid-row: content;
   grid-column: col-start / col-end;
   display: grid;
-  grid-template-rows: [analyser] 3fr [info] 1fr;
+  grid-template-rows: [analyser] 1fr [info] 1fr;
   grid-template-columns: [col-start] 1fr [col-end] 0px;
+  position: relative;
 }
 .analyser-container {
   grid-row: analyser;
   grid-column: col-start / col-end;
-
-  margin: auto;
-
   display: grid;
   grid-template-columns: repeat(var(--analyser-bars), var(--bar-width));
   grid-template-rows: 1fr;
   grid-column-gap: var(--bar-gap);
-  width: calc((var(--bar-width) + var(--bar-gap)) * var(--analyser-bars) - var(--bar-gap));
+
+  position: absolute;
+  --width: calc((var(--bar-width) + var(--bar-gap)) * var(--analyser-bars) - var(--bar-gap));
+  width: var(--width);
   height: calc(100% * var(--analyser-height));
+  bottom: 0;
+  left: calc((100% - var(--width)) / 2);
 
   transform: scaleY(-1);
 }

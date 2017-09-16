@@ -40,6 +40,10 @@ class FFTAnalyser {
     }
   }
 
+  setGain(gain) {
+    this.gain.gain.value = gain;
+  }
+
   // Process current frequency data
   process() {
     this.analyser.getByteFrequencyData(this.frequencydata);

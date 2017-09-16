@@ -1,8 +1,12 @@
 <html>
 <head>
+  <script>const $=s=>document.querySelector(s);</script>
   <title>Audio Player</title>
 
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="fonts/material-icons.css"/>
+
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/controls.css"/>
 </head>
 <body>
   <div class="container">
@@ -15,16 +19,27 @@
       </div>
     </div>
     <div class="content">
-      <div class="analyser-container" style="--analyser-bars: 4; --bar-gap: 32px; --bar-width: 128px; --analyser-height: 0.5;"></div>
+      <div class="analyser-container"></div>
       <div class="info-container">
         <!-- Change the src attribute to some path to a song -->
-        <audio src="mp3/fireaway.mp3" id="audiosrc" autoplay controls></audio>
+        <audio src="mp3/transient.mp3" id="audiosrc" loop controls></audio>
         <br>
         No info to display (yet)
       </div>
     </div>
+    <div class="controls">
+      <div class="controls-time-scrubber scrubber"></div>
+      <div class="controls-buttons">
+        <div class="control-button control-button--toggle control-button--loop material-icons" data-state="">repeat</div>
+        <div class="control-button control-button--previous material-icons">skip_previous</div>
+        <div class="control-button control-button--big control-button--play material-icons">play_arrow</div>
+        <div class="control-button control-button--next material-icons">skip_next</div>
+        <div class="control-button control-button--toggle control-button--shuffle material-icons" data-state="">shuffle</div>
+      </div>
+    </div>
   </div>
 
+  <script src="js/app-controls.js"></script>
   <script src="js/controls.js"></script>
   <script src="js/analyser-controller.js"></script>
   <script src="js/fft-analyser.js"></script>

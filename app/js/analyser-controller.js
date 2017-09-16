@@ -7,7 +7,7 @@ const AnalyserController = {
 
   bars: null,
   analyserContainer: null,
-  fftAnalser: null,
+  fftAnalyser: null,
   init: () => {
     AnalyserController.bars = [];
     AnalyserController.analyserContainer = document.querySelector('.analyser-container');
@@ -25,7 +25,7 @@ const AnalyserController = {
     acs.setProperty('--analyser-bars', AnalyserController.numberBars);
     acs.setProperty('--bar-width', AnalyserController.barWidth);
     acs.setProperty('--bar-gap', AnalyserController.barGap);
-    acs.setProperty('--analyser-height', 0.5);
+    acs.setProperty('--analyser-height', 0.8);
 
     AnalyserController.fftAnalyser = new FFTAnalyser(document.getElementById('audiosrc'));
 
@@ -48,5 +48,8 @@ const AnalyserController = {
     requestAnimationFrame(AnalyserController.loop);
 
     AnalyserController.fftAnalyser.process();
-  }
+  },
+  setGain: gain => {
+    this.fftAnalyser.setGain(gain);
+  },
 };
