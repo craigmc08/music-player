@@ -8,7 +8,7 @@
 .controls-buttons {
   display: grid;
   /*grid-template-columns: 48px 96px repeat(3, 48px);*/
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(8, auto);
   grid-template-rows: 1fr;
   justify-content: center;
   align-items: center;
@@ -27,6 +27,9 @@
 }
 .control-button--big {
   --scale: 3;
+}
+.control-button--small {
+  --scale: 1.5;
 }
 .control-button--toggle[data-state=active] {
   --shadow-hue: 40;

@@ -1,0 +1,38 @@
+.slider--container {
+  cursor: pointer;
+
+  width: var(--slider-width);
+  height: var(--slider-height);
+  background-color: var(--track-color);
+  position: relative;
+  user-select: none;
+
+  --inactive-thumb-size: var(--thumb-size);
+}
+.slider--thumb {
+  background-color: var(--color);
+  width: var(--inactive-thumb-size);
+  height: var(--inactive-thumb-size);
+  border-radius: var(--thumb-size);
+  position: absolute;
+  top: calc((var(--slider-height) - var(--thumb-size)) / 2);
+  left: calc(var(--percentage) * (var(--slider-width) - var(--thumb-size)));
+  margin-left: calc((var(--thumb-size) - var(--inactive-thumb-size)) / 2);
+  margin-top: calc((var(--thumb-size) - var(--inactive-thumb-size)) / 2);
+
+  transition: width 0.1s ease-in-out, height 0.1s ease-in-out, margin 0.1s ease-in-out;
+}
+.slider--container:hover .slider--thumb, .slider--container[data-state=sliding] .slider--thumb {
+  margin-left: 0;
+  margin-top: 0;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+}
+.slider--pretrack {
+  background-color: var(--color);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: calc((1 - var(--percentage)) * (var(--slider-width) - var(--thumb-size)) + var(--thumb-size) / 2);
+}

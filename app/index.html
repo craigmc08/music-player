@@ -5,6 +5,7 @@
 
   <link rel="stylesheet" href="fonts/material-icons.css"/>
 
+  <link rel="stylesheet" href="css/Slider.css"/>
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="css/controls.css"/>
 </head>
@@ -28,8 +29,18 @@
       </div>
     </div>
     <div class="controls">
-      <div class="controls-time-scrubber scrubber"></div>
+      <div class="controls-time-slider"
+        style="--slider-width: 100%; --slider-height: 8px;
+               --inactive-thumb-size: 8px; --thumb-size: 16px; --color: white;
+               --track-color: rgba(0, 0, 0, 0.3);">
+      </div>
       <div class="controls-buttons">
+        <div class="control-button control-button--small control-volume-icon material-icons">volume_down</div>
+        <div class="control-volume-slider"
+          style="--slider-width: 100px; --slider-height: 6px;
+                 --thumb-size: 16px; --color: white;
+                 --track-color: rgba(0, 0, 0, 0.3);">
+        </div>
         <div class="control-button control-button--toggle control-button--loop material-icons" data-state="">repeat</div>
         <div class="control-button control-button--previous material-icons">skip_previous</div>
         <div class="control-button control-button--big control-button--play material-icons">play_arrow</div>
@@ -39,10 +50,12 @@
     </div>
   </div>
 
+  <script src="js/EventHandler.js"></script>
+  <script src="js/Slider.js"></script>
   <script src="js/app-controls.js"></script>
-  <script src="js/controls.js"></script>
   <script src="js/analyser-controller.js"></script>
   <script src="js/fft-analyser.js"></script>
+  <script src="js/controls.js"></script>
 
   <script>
   AnalyserController.init();

@@ -1,6 +1,9 @@
 const loopElement = $('.control-button--loop');
 const shuffleElement = $('.control-button--shuffle');
 const playElement = $('.control-button--play');
+const timeSliderElement = $('.controls-time-slider');
+const volumeSliderElement = $('.control-volume-slider');
+const volumeLevelIconElement = $('.control-volume-icon');
 
 const registerToggleControl = (e, updateFunc) => {
   e.addEventListener('click', () => {
@@ -38,6 +41,26 @@ const updatePlaying = active => {
   if (active) $('#audiosrc').play();
   else $('#audiosrc').pause();
 };
+const updateTime = value => {
+  console.log(`Time slider update: ${value}`);
+};
+const updateVolume = value => {
+  AnalyserController.setGain(value);
+  updateVolumeGainIcon();
+};
+const updateVolumeGainIcon = () => {
+  volumeLevelIconElement.innerText = volumeSlider.percentage > 0 ? volumeSlider.percentage > 0.5 ? 'volume_up' : 'volume_down': 'volume_off';
+};
+
+const timeSlider = new Slider(timeSliderElement, 0, 100);
+timeSlider.addEventListener('slideupdate', updateTime);
+timeSlider.addEventListener('slideend', updateTime);
+
+const volumeSlider = new Slider(volumeSliderElement, 0, 0.5);
+volumeSlider.addEventListener('slideupdate', updateVolume);
+volumeSlider.addEventListener('slideend', updateVolume);
+volumeSlider.percentage = AnalyserController.defaultGain / (volumeSlider.maxVal - volumeSlider.minVal) + volumeSlider.minVal;
+updateVolumeGainIcon();
 
 registerToggleControl(loopElement, updateLooping);
 registerToggleControl(shuffleElement, updateShuffling);

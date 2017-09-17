@@ -2,8 +2,9 @@ const AnalyserController = {
   numberBars: 64,
   barWidth: '16px',
   barGap: '8px',
-  minFrequency: 200,
+  minFrequency: 20,
   maxFrequency: 4000,
+  defaultGain: 0.3,
 
   bars: null,
   analyserContainer: null,
@@ -28,7 +29,7 @@ const AnalyserController = {
     acs.setProperty('--analyser-height', 0.8);
 
     AnalyserController.fftAnalyser = new FFTAnalyser(document.getElementById('audiosrc'));
-
+    AnalyserController.setGain(AnalyserController.defaultGain);
     AnalyserController.loop();
   },
   update: (bardata, max) => {
@@ -50,6 +51,6 @@ const AnalyserController = {
     AnalyserController.fftAnalyser.process();
   },
   setGain: gain => {
-    this.fftAnalyser.setGain(gain);
+    AnalyserController.fftAnalyser.setGain(gain);
   },
 };
