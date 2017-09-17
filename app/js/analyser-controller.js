@@ -1,7 +1,10 @@
 const AnalyserController = {
+  // numberBars: 64,
+  // barWidth: '16px',
+  // barGap: '8px',
   numberBars: 64,
-  barWidth: '16px',
-  barGap: '8px',
+  barWidth: '17.9px',
+  barGap: '6.7px',
   minFrequency: 20,
   maxFrequency: 4000,
   defaultGain: 0.3,
@@ -17,6 +20,7 @@ const AnalyserController = {
       const newBar = document.createElement('div');
       newBar.classList.add('analyser-bar');
       newBar.id = `ab-${i}`;
+      newBar.style.height = '1%';
       AnalyserController.bars[i] = newBar;
 
       AnalyserController.analyserContainer.appendChild(newBar);
@@ -33,6 +37,8 @@ const AnalyserController = {
     AnalyserController.loop();
   },
   update: (bardata, max) => {
+    // if (AnalyserController.fftAnalyser.audio.paused) return;
+
     if (bardata.length !== AnalyserController.numberBars) {
       throw new Error(`Invalid bar data length (${bardata.length})`);
       return;

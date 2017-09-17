@@ -1,5 +1,5 @@
 .slider--container {
-  cursor: pointer;
+  cursor: default;
 
   width: var(--slider-width);
   height: var(--slider-height);

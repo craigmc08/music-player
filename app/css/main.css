@@ -12,40 +12,63 @@ body {
   width: 100%;
   padding: 0;
   margin: 0;
-  display: grid;
-  grid-template-columns: [col-start] 1fr [col-end] 0px;
-  grid-template-rows: [title] 24px [content] auto;
+  -webkit-app-region: drag;
 }
 .title-bar {
-  -webkit-app-region: drag;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 1);
+  z-index: 9999;
+  /*-webkit-app-region: drag;*/
+  background-color: rgba(255, 255, 255, 0);
   padding: 0;
   margin: 0;
-  color: black;
+  color: white;
   line-height: 24px;
-  font-size: 12px;
-  grid-row: title;
-  grid-column: col-start / col-end;
+  font-size: 16px;
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: calc(100% - 32px);
+  height: 24px;
+  width: 100%;
 }
 .title {
   position: fixed;
-  top: 0;
+  top: 8px;
   left: 24px;
 }
 .title-bar-buttons {
-  -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag !important;
   position: fixed;
   top: 0;
-  right: 8px;
+  right: 0;
+  color: white;
+}
+.app-button {
+  width: 48px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  transition: background-color 0.2s linear;
+  background-color: rgba(255, 255, 255, 0);
+  user-select: none;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
+.app-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .content {
-  grid-row: content;
-  grid-column: col-start / col-end;
   display: grid;
   grid-template-rows: [analyser] 1fr [info] 1fr;
   grid-template-columns: [col-start] 1fr [col-end] 0px;
   position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
 }
 .analyser-container {
   grid-row: analyser;
@@ -77,7 +100,7 @@ body {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0);
-  box-shadow: 0 0 20px 0 rgba(150, 150, 150, 1);
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.5);
 }
 .info-container {
   grid-row: info;

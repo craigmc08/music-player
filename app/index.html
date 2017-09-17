@@ -14,18 +14,16 @@
     <div class="title-bar">
       <div class="title">Audio Visualizer</div>
       <div class="title-bar-buttons">
-        <button class="min-button">-</button>
-        <button class="max-button">+</button>
-        <button class="close-button">x</button>
+        <div class="min-button app-button material-icons">remove</div>
+        <div class="max-button app-button material-icons">fullscreen</div>
+        <div class="close-button app-button material-icons">close</div>
       </div>
     </div>
     <div class="content">
       <div class="analyser-container"></div>
       <div class="info-container">
         <!-- Change the src attribute to some path to a song -->
-        <audio src="mp3/transient.mp3" id="audiosrc" loop controls></audio>
-        <br>
-        No info to display (yet)
+        <audio src="mp3/warrior.mp3" id="audiosrc" loop></audio>
       </div>
     </div>
     <div class="controls">
@@ -35,17 +33,18 @@
                --track-color: rgba(0, 0, 0, 0.3);">
       </div>
       <div class="controls-buttons">
-        <div class="control-button control-button--small control-volume-icon material-icons">volume_down</div>
-        <div class="control-volume-slider"
-          style="--slider-width: 100px; --slider-height: 6px;
-                 --thumb-size: 16px; --color: white;
-                 --track-color: rgba(0, 0, 0, 0.3);">
-        </div>
-        <div class="control-button control-button--toggle control-button--loop material-icons" data-state="">repeat</div>
         <div class="control-button control-button--previous material-icons">skip_previous</div>
         <div class="control-button control-button--big control-button--play material-icons">play_arrow</div>
         <div class="control-button control-button--next material-icons">skip_next</div>
+        <div class="control-button control-button--toggle control-button--loop material-icons" data-state="">repeat</div>
         <div class="control-button control-button--toggle control-button--shuffle material-icons" data-state="">shuffle</div>
+        <div class="control-volume" style="--slider-height: 6px">
+          <div class="control-button control-button--small control-volume-icon material-icons">volume_down</div>
+          <div class="control-volume-slider"
+          style="--slider-height: 6px; --thumb-size: 16px; --color: white;
+          --track-color: rgba(0, 0, 0, 0.3);">
+        </div>
+      </div>
       </div>
     </div>
   </div>

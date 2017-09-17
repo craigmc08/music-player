@@ -105,4 +105,7 @@ class Slider extends EventHandler {
   get value() {
     return this.percentage * (this.maxVal - this.minVal) + this.minVal;
   }
+  set value(value) {
+    this.percentage = (value - this.minVal) / (this.maxVal - this.minVal);
+  }
 }

@@ -4,6 +4,7 @@ const playElement = $('.control-button--play');
 const timeSliderElement = $('.controls-time-slider');
 const volumeSliderElement = $('.control-volume-slider');
 const volumeLevelIconElement = $('.control-volume-icon');
+const audioSrc = $('#audiosrc');
 
 const registerToggleControl = (e, updateFunc) => {
   e.addEventListener('click', () => {
@@ -38,11 +39,11 @@ const updateShuffling = active => {
   // Do something with this later
 };
 const updatePlaying = active => {
-  if (active) $('#audiosrc').play();
-  else $('#audiosrc').pause();
+  if (active) audioSrc.play();
+  else audioSrc.pause();
 };
 const updateTime = value => {
-  console.log(`Time slider update: ${value}`);
+  audioSrc.currentTime = value;
 };
 const updateVolume = value => {
   AnalyserController.setGain(value);
@@ -51,19 +52,34 @@ const updateVolume = value => {
 const updateVolumeGainIcon = () => {
   volumeLevelIconElement.innerText = volumeSlider.percentage > 0 ? volumeSlider.percentage > 0.5 ? 'volume_up' : 'volume_down': 'volume_off';
 };
+const updateVolumeMuted = active => {
+  AnalyserController.setGain(0);
+  if (active) {
+    volumeLevelIconElement.innerText = 'volume_off';
+  } else {
+    updateVolumeGainIcon();
+    AnalyserController.setGain(volumeSlider.value);
+  }
+};
 
-const timeSlider = new Slider(timeSliderElement, 0, 100);
+const timeSlider = new Slider(timeSliderElement, 0, $('#audiosrc').duration);
 timeSlider.addEventListener('slideupdate', updateTime);
-timeSlider.addEventListener('slideend', updateTime);
+let wasPlayingBeforeSlide = false;
+timeSlider.addEventListener('slidestart', ()=>{wasPlayingBeforeSlide=audioSrc.paused?false:true;audioSrc.pause();});
+timeSlider.addEventListener('slideend', ()=>{if(wasPlayingBeforeSlide)audioSrc.play();});
+audioSrc.addEventListener('timeupdate', () => {
+  timeSlider.maxVal = audioSrc.duration;
+  timeSlider.value = audioSrc.currentTime;
+});
 
 const volumeSlider = new Slider(volumeSliderElement, 0, 0.5);
 volumeSlider.addEventListener('slideupdate', updateVolume);
-volumeSlider.addEventListener('slideend', updateVolume);
 volumeSlider.percentage = AnalyserController.defaultGain / (volumeSlider.maxVal - volumeSlider.minVal) + volumeSlider.minVal;
 updateVolumeGainIcon();
 
 registerToggleControl(loopElement, updateLooping);
 registerToggleControl(shuffleElement, updateShuffling);
+registerToggleControl(volumeLevelIconElement, updateVolumeMuted);
 registerPlayElement(playElement, updatePlaying);
 
 registerAudioSource($('#audiosrc'));

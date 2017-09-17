@@ -4,12 +4,14 @@
   top: calc(100% - 200px);
   left: 0;
   right: 0;
+  -webkit-app-region: no-drag;
 }
 .controls-buttons {
   display: grid;
   /*grid-template-columns: 48px 96px repeat(3, 48px);*/
-  grid-template-columns: repeat(8, auto);
+  grid-template-columns: repeat(6, auto) 1fr auto;
   grid-template-rows: 1fr;
+  grid-column-gap: 8px;
   justify-content: center;
   align-items: center;
 }
@@ -22,7 +24,7 @@
   color: white;
   padding: 0;
   margin: 0;
-  cursor: pointer;
+  cursor: default;
   user-select: none;
 }
 .control-button--big {
@@ -37,18 +39,47 @@
   text-shadow: 0 0 10px hsla(var(--shadow-hue), 100%, 60%, 1);
 }
 
-.control-button--loop {
-  grid-column: 3;
-}
 .control-button--previous {
-  grid-column: 4;
+  grid-column: 1;
 }
 .control-button--play {
-  grid-column: 5;
+  grid-column: 2;
 }
 .control-button--next {
-  grid-column: 6;
+  grid-column: 3;
+}
+.control-button--loop {
+  grid-column: 4;
 }
 .control-button--shuffle {
-  grid-column: 7;
+  grid-column: 5;
+}
+.control-volume {
+  grid-column: 6;
+}
+
+.control-volume {
+  position: relative;
+  --slider-width: 0px;
+  width: calc(32px + var(--slider-width) + 8px);
+  transition: width 0.2s ease-in-out;
+}
+.control-volume div {
+  float: left;
+}
+.control-volume .control-volume-slider {
+  position: absolute;
+  top: calc((100% - var(--slider-height)) / 2);
+  left: 40px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.control-volume:hover {
+  width: 140px;
+}
+.control-volume:hover .control-volume-slider {
+  --slider-width: 100px !important;
+  visibility: visible;
+  opacity: 1;
 }
