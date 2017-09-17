@@ -1,7 +1,6 @@
 .controls {
   position: absolute;
   bottom: 0;
-  top: calc(100% - 200px);
   left: 0;
   right: 0;
   -webkit-app-region: no-drag;
@@ -14,6 +13,8 @@
   grid-column-gap: 8px;
   justify-content: center;
   align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 .control-button {
   --scale: 2;
@@ -56,6 +57,9 @@
 }
 .control-volume {
   grid-column: 6;
+}
+.control-button--viewplaylist {
+  grid-column: 8;
 }
 
 .control-volume {

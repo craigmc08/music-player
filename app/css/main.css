@@ -103,7 +103,39 @@ body {
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.5);
 }
 .info-container {
+  font-family: 'Montserrat';
   grid-row: info;
   grid-column: col-start / col-end;
   color: white;
+  text-transform: uppercase;
+  position: relative;
+
+  --artist-font-size: 90px;
+  --title-font-size: 45px;
+  --text-total-height: 180px;
+  --art-size: 200px;
+  --left-offset: 176px;
+}
+.info--artist {
+  font-weight: 400;
+  position: absolute;
+  font-size: var(--artist-font-size);
+  top: calc(16px + ((var(--art-size) - var(--text-total-height)) / 2));
+  left: calc(var(--left-offset) + var(--art-size) + 16px);
+  line-height: var(--artist-font-size);
+}
+.info--title {
+  font-weight: 200;
+  position: absolute;
+  font-size: var(--title-font-size);
+  top: calc(16px + ((var(--art-size) - var(--text-total-height)) / 2) + var(--artist-font-size));
+  left: calc(var(--left-offset) + var(--art-size) + 16px);
+  line-height: var(--title-font-size);
+}
+.info--art {
+  width: var(--art-size);
+  height: var(--art-size);
+  position: absolute;
+  left: var(--left-offset);
+  top: 16px;
 }
